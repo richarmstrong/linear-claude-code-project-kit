@@ -1,0 +1,72 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Philosophy
+
+"Progress is fastest where correctness is legible and cheaply verifiable." Apply this at all levels — the system itself, how you advise the user, and the product we offer.
+
+## What Is {{PROJECT}}
+
+<!-- Describe your project here: what it does, key concepts, links to specs -->
+
+## Commands
+
+```bash
+# Fill in your project's commands
+# npm run dev
+# npm test
+# npm run build
+```
+
+## Architecture
+
+<!-- Describe your project's architecture here -->
+
+## Conventions
+
+- **Commits**: `feat:`, `fix:`, `chore:`, `docs:`, `test:`
+<!-- Add language, framework, testing, linting conventions -->
+
+## Linear Integration
+
+**Team:** Yukta-athanor | **Project:** {{PROJECT}}
+
+The Linear MCP's `state` parameter fuzzy-matches status names. When multiple
+statuses share the same type (Triage/Backlog/Ideation/Icebox are all type
+"backlog"), name-based moves can land in the wrong status. **Always use the
+UUID for backlog-type and canceled-type statuses.**
+
+| Status | Type | ID |
+|---|---|---|
+| Triage | backlog | `938f1f55-f6a3-4b4a-a352-a3b9c0cf2bb0` |
+| Backlog | backlog | `4fc4d446-7c96-4246-b4f1-9d2f7b79342c` |
+| Ideation | backlog | `95146e40-7e7b-4b43-a293-f16d97fc41b6` |
+| Icebox | backlog | `95fa0626-2b65-4f08-976b-9259d0bb95c3` |
+| Under Consideration | unstarted | `e62193cf-3363-4c0b-be8f-239773aef6c9` |
+| In Progress | started | `b9c2f9ed-b138-431f-a2e8-82afa114db8b` |
+| In Review | started | `1250d3b9-79e7-41e5-9d97-d8503d9a7ff9` |
+| To Be Communicated | started | `56629ecd-0497-465d-888b-3f143349f922` |
+| Done | completed | `675d51b0-8a33-4d87-9e9d-c120554dd78e` |
+| Canceled | canceled | `2491c477-81bb-43d3-8ffa-73b4eb91fd62` |
+| Duplicate | canceled | `50a5e4c0-d331-4a41-b66c-4ee542794db6` |
+| Probably Not | canceled | `26e24c54-0a8e-426c-a7b4-09f70984bcde` |
+
+## Workflow
+
+**Every code change must trace to a Linear issue.** Create or identify the issue before writing code. No branches, no commits, no PRs without a corresponding ticket.
+
+**Never commit directly to main.** All changes go through branches and PRs:
+
+1. Create a feature branch (use the Linear branch name when working a ticket)
+2. Group changes by concern — one branch per logical unit, not one giant branch for a session
+3. Commit with conventional prefixes: `feat:`, `fix:`, `chore:`, `docs:`, `test:`
+4. Push and open a PR with a summary and test plan
+5. Return to `main` when done so the working tree is clean for the next task
+
+If a session produces changes across multiple concerns (e.g. a feature + a CI fix + docs), split them into separate branches and PRs rather than bundling.
+
+## When implementing features
+
+1. Check existing patterns in the codebase first
+2. Write tests alongside implementation
