@@ -14,7 +14,8 @@ A portable project template for high-traceability software development using [Cl
 ## Prerequisites
 
 - [Claude Code CLI](https://claude.ai/code) installed
-- [Linear](https://linear.app) workspace with the [Linear MCP](https://github.com/linear/linear-mcp) configured in Claude Code
+- [Linear](https://linear.app) workspace
+- Linear MCP configured in Claude Code (see setup below)
 - A Linear team with this status workflow:
 
   | Status | Type |
@@ -33,6 +34,32 @@ A portable project template for high-traceability software development using [Cl
   | Probably Not | canceled |
 
 - An "Attention" label group with: Alignment Needed, Action Needed, Waiting/Blocked, On Track
+
+## Setting up the Linear MCP (one-time)
+
+The skills in this kit talk to Linear through the [Linear MCP server](https://linear.app/docs/mcp). This is a one-time setup at the user level — it works across all your projects.
+
+```bash
+# Add the Linear MCP server to Claude Code
+claude mcp add --transport http linear --scope user https://api.linear.app/mcp
+```
+
+Then authenticate:
+
+```bash
+claude
+# Inside Claude Code, run:
+/mcp
+# This opens a browser to authorize with your Linear account
+```
+
+Verify it's working:
+
+```bash
+claude mcp list
+```
+
+You should see `linear` listed. The OAuth token is stored in your system keychain — you won't need to re-authenticate unless the token expires.
 
 ## Quick start
 
